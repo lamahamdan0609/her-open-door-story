@@ -1,0 +1,969 @@
+/* =====================================
+   BASIC RESET
+===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    overflow-x: hidden;
+    background: #111;
+}
+
+
+/* =====================================
+   GENERAL SCENE SETTINGS
+===================================== */
+
+.scene {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* =====================================
+   TEXT
+===================================== */
+
+.story-content,
+.leaving-text,
+.artist-text,
+.passions-text,
+.creating-text,
+.gallery-title,
+.ending-content {
+    position: relative;
+    z-index: 10;
+}
+
+h1 {
+    font-size: clamp(3rem, 8vw, 8rem);
+    letter-spacing: 8px;
+}
+
+h2 {
+    font-size: clamp(2rem, 5vw, 5rem);
+    line-height: 1.1;
+}
+
+p {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.small-text {
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+
+/* =====================================
+   PROGRESSIVE REVEAL
+===================================== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =====================================
+   SCENE 1 - HOUSE
+===================================== */
+
+.house {
+    background:
+        radial-gradient(
+            circle at 75% 35%,
+            #3d3a46 0%,
+            #191820 35%,
+            #08080b 80%
+        );
+
+    color: #eee;
+}
+
+.story-content {
+    width: 70%;
+    max-width: 850px;
+    padding-top: 25vh;
+    padding-left: 10%;
+}
+
+.house h1 {
+    margin: 20px 0;
+}
+
+.story-text {
+    font-size: 2rem;
+    margin-top: 50px;
+}
+
+.description {
+    max-width: 500px;
+    margin-top: 20px;
+    color: #bbb;
+}
+
+.scroll-text {
+    margin-top: 100px;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    animation: floating 2s infinite;
+}
+
+
+/* Window */
+
+.window {
+    position: absolute;
+    right: 12%;
+    top: 18%;
+    width: 220px;
+    height: 330px;
+
+    border: 10px solid #111;
+
+    background:
+        linear-gradient(
+            135deg,
+            #242438,
+            #11111d
+        );
+
+    box-shadow:
+        0 0 60px rgba(100, 100, 160, 0.2);
+}
+
+.window::before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 100%;
+    background: #111;
+    left: 50%;
+}
+
+.window::after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    background: #111;
+    top: 50%;
+}
+
+
+/* Room light */
+
+.room-light {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+
+    right: -100px;
+    top: 100px;
+
+    background: rgba(255, 230, 180, 0.05);
+
+    border-radius: 50%;
+
+    filter: blur(50px);
+}
+
+
+/* Rain */
+
+.rain {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        repeating-linear-gradient(
+            110deg,
+            transparent,
+            transparent 8px,
+            rgba(255,255,255,0.04) 9px,
+            transparent 10px
+        );
+
+    animation: rainMove 1s linear infinite;
+}
+
+@keyframes rainMove {
+    from {
+        transform: translateY(-20px);
+    }
+
+    to {
+        transform: translateY(20px);
+    }
+}
+
+
+/* =====================================
+   SCENE 2 - LEAVING
+===================================== */
+
+.leaving {
+    background:
+        linear-gradient(
+            to bottom,
+            #111522,
+            #090b12
+        );
+
+    color: white;
+}
+
+.door {
+    position: absolute;
+
+    width: 260px;
+    height: 550px;
+
+    left: 50%;
+    bottom: 0;
+
+    transform: translateX(-50%);
+
+    background: #17120f;
+
+    border: 12px solid #080808;
+
+    transition: transform 1s ease;
+}
+
+.door-light {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #e9c46a,
+            transparent
+        );
+
+    opacity: 0;
+
+    transition: opacity 1s ease;
+}
+
+.girl {
+    position: absolute;
+
+    left: 35%;
+    bottom: 80px;
+
+    width: 80px;
+    height: 220px;
+
+    transition: transform 0.2s linear;
+}
+
+.head {
+    width: 45px;
+    height: 45px;
+
+    background: #c58c72;
+
+    border-radius: 50%;
+
+    margin: auto;
+}
+
+.body {
+    width: 55px;
+    height: 100px;
+
+    background: #24243a;
+
+    margin: auto;
+
+    border-radius: 20px 20px 5px 5px;
+}
+
+.legs {
+    width: 45px;
+    height: 75px;
+
+    border-left: 12px solid #151522;
+    border-right: 12px solid #151522;
+
+    margin: auto;
+}
+
+.leaving-text {
+    position: absolute;
+
+    top: 25%;
+    left: 8%;
+
+    max-width: 550px;
+}
+
+.leaving-text p {
+    margin-top: 30px;
+    color: #aaa;
+}
+
+
+/* =====================================
+   SCENE 3 - ARTIST
+===================================== */
+
+.artist {
+    background:
+        linear-gradient(
+            #15192d,
+            #29254a
+        );
+
+    color: #eee;
+}
+
+.moon {
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    right: 15%;
+    top: 12%;
+
+    border-radius: 50%;
+
+    background: #eee;
+
+    box-shadow:
+        0 0 60px rgba(255,255,255,0.3);
+
+    transition: transform 0.2s linear;
+}
+
+.stars {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        radial-gradient(
+            white 1px,
+            transparent 1px
+        );
+
+    background-size: 80px 80px;
+
+    opacity: 0.3;
+}
+
+.artist-text {
+    position: absolute;
+
+    top: 25%;
+    left: 10%;
+
+    max-width: 500px;
+}
+
+.artist-text h2 {
+    margin: 20px 0;
+}
+
+.artist-text p {
+    margin-top: 20px;
+}
+
+.quote {
+    font-size: 2rem;
+    font-style: italic;
+    color: #e9c46a;
+}
+
+
+/* Artist */
+
+.artist-character {
+    position: absolute;
+
+    bottom: 0;
+    right: 25%;
+
+    width: 100px;
+}
+
+.artist-head {
+    width: 55px;
+    height: 55px;
+
+    background: #b87b63;
+
+    border-radius: 50%;
+
+    margin: auto;
+}
+
+.artist-body {
+    width: 90px;
+    height: 220px;
+
+    background: #27233c;
+
+    border-radius: 40px 40px 0 0;
+}
+
+
+/* Canvas */
+
+.canvas {
+    position: absolute;
+
+    right: 10%;
+    bottom: 20%;
+
+    width: 250px;
+    height: 300px;
+
+    background: #d6c7a1;
+
+    border: 12px solid #5c3d2e;
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.5);
+
+    transform: rotate(-4deg);
+}
+
+.painting {
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e76f51,
+            #2a9d8f,
+            #264653,
+            #e9c46a
+        );
+}
+
+
+/* =====================================
+   SCENE 4 - PASSIONS
+===================================== */
+
+.passions {
+    background: #eee5d5;
+    color: #29231f;
+}
+
+.passions-text {
+    padding-top: 18vh;
+    margin-left: 10%;
+
+    max-width: 600px;
+}
+
+.passions-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 25px;
+
+    margin: 40px 0;
+}
+
+.passions-list span {
+    font-size: 2rem;
+    font-style: italic;
+}
+
+
+/* Paint splashes */
+
+.paint-splash {
+    position: absolute;
+
+    border-radius: 50%;
+
+    opacity: 0.7;
+}
+
+.splash-one {
+    width: 300px;
+    height: 300px;
+
+    background: #e76f51;
+
+    right: 5%;
+    top: 15%;
+}
+
+.splash-two {
+    width: 200px;
+    height: 200px;
+
+    background: #2a9d8f;
+
+    right: 25%;
+    bottom: 15%;
+}
+
+.splash-three {
+    width: 150px;
+    height: 150px;
+
+    background: #e9c46a;
+
+    left: 5%;
+    bottom: 10%;
+}
+
+
+/* Artwork */
+
+.artwork {
+    position: absolute;
+
+    width: 230px;
+    height: 280px;
+
+    background: white;
+
+    border: 12px solid #5b4636;
+
+    box-shadow:
+        0 20px 30px rgba(0,0,0,0.2);
+}
+
+.artwork-one {
+    right: 20%;
+    top: 25%;
+
+    transform: rotate(5deg);
+}
+
+.artwork-two {
+    right: 5%;
+    bottom: 15%;
+
+    transform: rotate(-7deg);
+}
+
+.abstract-art {
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e76f51,
+            #e9c46a,
+            #2a9d8f
+        );
+}
+
+.abstract-art.second {
+    background:
+        linear-gradient(
+            45deg,
+            #264653,
+            #e76f51,
+            #f4a261
+        );
+}
+
+
+/* =====================================
+   SCENE 5 - CREATING
+===================================== */
+
+.creating {
+    background: #cdbda7;
+    color: #29231f;
+}
+
+.studio-wall {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.2),
+            transparent
+        );
+}
+
+.creating-text {
+    position: absolute;
+
+    top: 20%;
+    left: 8%;
+
+    max-width: 500px;
+}
+
+.creating-text h2 {
+    margin: 20px 0;
+}
+
+.creating-text p {
+    margin-top: 20px;
+}
+
+
+/* Studio */
+
+.studio {
+    position: absolute;
+
+    right: 8%;
+    bottom: 0;
+
+    width: 45%;
+    height: 80%;
+}
+
+
+/* Easel */
+
+.easel {
+    position: absolute;
+
+    left: 25%;
+    top: 10%;
+
+    width: 350px;
+    height: 500px;
+}
+
+.easel-canvas {
+    width: 100%;
+    height: 70%;
+
+    background: #eee8d7;
+
+    border: 15px solid #684b3c;
+
+    box-shadow:
+        0 30px 50px rgba(0,0,0,0.2);
+}
+
+.final-painting {
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #e76f51,
+            transparent 20%
+        ),
+
+        radial-gradient(
+            circle at 70% 60%,
+            #2a9d8f,
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #264653,
+            #e9c46a
+        );
+}
+
+
+/* Paint */
+
+.paint {
+    position: absolute;
+
+    width: 70px;
+    height: 70px;
+
+    border-radius: 50%;
+}
+
+.paint-red {
+    background: #e76f51;
+    bottom: 15%;
+    left: 10%;
+}
+
+.paint-blue {
+    background: #264653;
+    bottom: 10%;
+    left: 25%;
+}
+
+.paint-yellow {
+    background: #e9c46a;
+    bottom: 18%;
+    left: 40%;
+}
+
+
+/* =====================================
+   SCENE 6 - GALLERY
+===================================== */
+
+.gallery {
+    background: #e8dcc9;
+    color: #302a26;
+}
+
+.gallery-title {
+    position: absolute;
+
+    top: 12%;
+    left: 8%;
+
+    max-width: 600px;
+}
+
+.gallery-title h2 {
+    margin: 20px 0;
+}
+
+.gallery-title p {
+    margin-top: 20px;
+}
+
+
+/* Gallery wall */
+
+.gallery-wall {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 55%;
+
+    background: #d7c8b4;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 60px;
+}
+
+
+/* Frames */
+
+.frame {
+    width: 210px;
+    height: 270px;
+
+    background: #f7f1e6;
+
+    border: 15px solid #654936;
+
+    box-shadow:
+        0 20px 30px rgba(0,0,0,0.2);
+
+    transition:
+        transform 0.5s ease;
+}
+
+.frame:hover {
+    transform: translateY(-20px);
+}
+
+.gallery-art {
+    width: 100%;
+    height: 100%;
+}
+
+.art-one {
+    background:
+        linear-gradient(
+            135deg,
+            #e76f51,
+            #f4a261
+        );
+}
+
+.art-two {
+    background:
+        linear-gradient(
+            45deg,
+            #264653,
+            #2a9d8f
+        );
+}
+
+.art-three {
+    background:
+        linear-gradient(
+            135deg,
+            #e9c46a,
+            #e76f51,
+            #264653
+        );
+}
+
+
+/* Gallery light */
+
+.gallery-light {
+    position: absolute;
+
+    width: 700px;
+    height: 300px;
+
+    top: -100px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: rgba(255,240,200,0.4);
+
+    filter: blur(50px);
+}
+
+
+/* =====================================
+   FINAL SCENE
+===================================== */
+
+.ending {
+    background:
+        linear-gradient(
+            135deg,
+            #f3e8d3,
+            #d8b98b
+        );
+
+    color: #34261e;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.ending-content {
+    max-width: 1000px;
+    padding: 40px;
+}
+
+.ending h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.ending h1 {
+    font-size: clamp(3rem, 7vw, 6rem);
+    letter-spacing: 2px;
+    margin-bottom: 60px;
+}
+
+.gallery-name {
+    font-size: 1.5rem;
+
+    letter-spacing: 8px;
+
+    border-top: 1px solid #6e5745;
+    border-bottom: 1px solid #6e5745;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =====================================
+   ANIMATIONS
+===================================== */
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
+
+@media (max-width: 768px) {
+
+    .story-content,
+    .leaving-text,
+    .artist-text,
+    .passions-text,
+    .creating-text,
+    .gallery-title {
+        left: 5%;
+        width: 90%;
+    }
+
+    .window {
+        right: -50px;
+        opacity: 0.5;
+    }
+
+    .canvas {
+        right: -30px;
+        transform: scale(0.7);
+    }
+
+    .artist-character {
+        right: 5%;
+    }
+
+    .artwork {
+        transform: scale(0.7);
+    }
+
+    .gallery-wall {
+        gap: 10px;
+    }
+
+    .frame {
+        width: 120px;
+        height: 170px;
+        border-width: 8px;
+    }
+
+    .studio {
+        opacity: 0.5;
+    }
+}
